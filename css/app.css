@@ -51,7 +51,6 @@ body {
 
 .medal {
   border-radius: 50%;
-  cursor: pointer;
   float: left;
   height: 100%;
   width: 17%;
