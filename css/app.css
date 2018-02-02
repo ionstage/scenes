@@ -1,8 +1,6 @@
 body {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  background-color: #000000;
-  margin: 0;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
@@ -10,7 +8,7 @@ body {
 }
 
 .main {
-  background-color: #ffffff;
+  background-color: #000000;
   bottom: 0;
   height: 56.25vw;
   left: 0;
@@ -24,6 +22,7 @@ body {
 }
 
 .content {
+  background-color: #ffffff;
   height: 100%;
   position: absolute;
   width: 100%;
