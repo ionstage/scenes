@@ -47,6 +47,9 @@ body {
 }
 
 .medal {
+  background-color: #eeeeee;
+  background-image: linear-gradient(#fafafa, #eeeeee);
+  border: 1px solid #9e9e9e;
   border-radius: 50%;
   float: left;
   height: 100%;
