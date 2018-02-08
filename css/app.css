@@ -78,6 +78,10 @@ body {
   width: 90%;
 }
 
+.button-icon.hide {
+  display: none;
+}
+
 .sound-button {
   float: left;
   height: 44%;
