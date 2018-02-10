@@ -65,7 +65,7 @@ body {
   cursor: pointer;
   opacity: 0.8;
   outline: 0;
-  position: relative;
+  padding: 0;
 }
 
 .button:active {
@@ -73,15 +73,10 @@ body {
 }
 
 .button-icon {
-  bottom: 5%;
-  height: 90%;
-  left: 5%;
+  box-sizing: border-box;
+  height: 100%;
   pointer-events: none;
-  position: absolute;
-  right: 5%;
-  top: 5%;
-  vertical-align: middle;
-  width: 90%;
+  width: 100%;
 }
 
 .button-icon.hide {
@@ -95,8 +90,16 @@ body {
   width: 8%;
 }
 
+.sound-button > .button-icon {
+  padding: 6%;
+}
+
 .next-button {
   float: right;
   height: 100%;
   width: 18%;
+}
+
+.next-button > .button-icon {
+  padding: 3%;
 }
