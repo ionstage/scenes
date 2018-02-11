@@ -83,14 +83,14 @@ body {
   display: none;
 }
 
-.sound-button {
+.mute-button {
   float: left;
   height: 44%;
   margin: 6% 2% 0;
   width: 8%;
 }
 
-.sound-button > .button-icon {
+.mute-button > .button-icon {
   padding: 6%;
 }
 
