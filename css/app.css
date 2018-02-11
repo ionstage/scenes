@@ -79,10 +79,6 @@ body {
   width: 100%;
 }
 
-.button-icon.hide {
-  display: none;
-}
-
 .mute-button {
   float: left;
   height: 44%;
@@ -92,6 +88,14 @@ body {
 
 .mute-button > .button-icon {
   padding: 6%;
+}
+
+.mute-button[data-state='mute'] > .button-icon-unmute {
+  display: none;
+}
+
+.mute-button[data-state='unmute'] > .button-icon-mute {
+  display: none;
 }
 
 .next-button {
