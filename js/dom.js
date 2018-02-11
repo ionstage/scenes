@@ -15,6 +15,10 @@
     }
   };
 
+  dom.data = function(el, key, value) {
+    el.dataset[key] = value;
+  };
+
   dom.supportsTouch = function() {
     return ('createTouch' in document);
   };
