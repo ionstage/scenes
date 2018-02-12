@@ -76,6 +76,7 @@ body {
   box-sizing: border-box;
   height: 100%;
   pointer-events: none;
+  vertical-align: top;
   width: 100%;
 }
 
