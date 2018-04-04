@@ -7,6 +7,10 @@
     return document.body;
   };
 
+  dom.children = function(el) {
+    return Array.prototype.slice.call(el.children);
+  };
+
   dom.toggleClass = function(el, className, force) {
     if (force) {
       el.classList.add(className);
