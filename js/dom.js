@@ -11,6 +11,13 @@
     return Array.prototype.slice.call(el.children);
   };
 
+  dom.css = function(el, props) {
+    var style = el.style;
+    Object.keys(props).forEach(function(key) {
+      style[key] = props[key];
+    });
+  };
+
   dom.toggleClass = function(el, className, force) {
     if (force) {
       el.classList.add(className);
