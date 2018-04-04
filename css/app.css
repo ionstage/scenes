@@ -21,9 +21,8 @@ body {
   width: 177.78vh;
 }
 
-.main::before {
+.background {
   background-color: #ffffff;
-  content: '';
   height: 100%;
   position: absolute;
   width: 100%;
