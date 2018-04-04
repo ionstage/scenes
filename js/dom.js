@@ -11,6 +11,10 @@
     return Array.prototype.slice.call(el.children);
   };
 
+  dom.append = function(parent, child) {
+    parent.appendChild(child);
+  };
+
   dom.css = function(el, props) {
     var style = el.style;
     Object.keys(props).forEach(function(key) {
