@@ -29,6 +29,12 @@ body {
   width: 100%;
 }
 
+.background-item {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
 .controls {
   bottom: 0;
   box-sizing: border-box;
