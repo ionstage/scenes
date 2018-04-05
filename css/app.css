@@ -28,7 +28,8 @@ body {
   width: 100%;
 }
 
-.background-item {
+.background-item,
+.foreground-item {
   height: 100%;
   position: absolute;
   -webkit-transition: opacity 0.5s ease-out;
