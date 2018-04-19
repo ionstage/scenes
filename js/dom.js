@@ -34,6 +34,13 @@
     el.dataset[key] = value;
   };
 
+  dom.transform = function(el, value) {
+    dom.css(el, {
+      transform: value,
+      webkitTransform: value,
+    });
+  };
+
   dom.on = function(el, type, listener, useCapture) {
     el.addEventListener(type, listener, !!useCapture);
   };
