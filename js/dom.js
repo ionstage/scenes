@@ -41,6 +41,10 @@
     });
   };
 
+  dom.translate = function(el, x, y) {
+    dom.transform(el, 'translate(' + x + 'px, ' + y + 'px)');
+  };
+
   dom.on = function(el, type, listener, useCapture) {
     el.addEventListener(type, listener, !!useCapture);
   };
