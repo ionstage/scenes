@@ -108,13 +108,3 @@ body {
 .mute-button[data-state='unmute'] > .button-icon-mute {
   display: none;
 }
-
-.next-button {
-  float: right;
-  height: 100%;
-  width: 18%;
-}
-
-.button-icon-next {
-  padding: 3%;
-}
