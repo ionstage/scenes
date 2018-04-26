@@ -90,9 +90,9 @@ body {
 }
 
 .mute-button {
-  float: left;
+  float: right;
   height: 44%;
-  margin: 6% 2% 0;
+  margin: 6% 0 0;
   width: 8%;
 }
 
