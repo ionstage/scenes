@@ -37,33 +37,18 @@ body {
   width: 100%;
 }
 
-.controls {
-  bottom: 0;
-  box-sizing: border-box;
-  height: 26%;
-  overflow: hidden;
-  padding: 2%;
-  position: absolute;
-  width: 100%;
-}
-
-.controls::after {
-  clear: both;
-  content: '.';
-  display: block;
-  height: 0;
-  visibility: hidden;
-}
-
 .medal {
   background-color: #fafafa;
   border: 2px solid #fafafa;
   border-radius: 50%;
+  bottom: 0;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .075);
   box-sizing: border-box;
-  float: left;
-  height: 100%;
-  width: 11%;
+  height: 19.2%;
+  left: 0;
+  margin: 2%;
+  position: absolute;
+  width: 10.8%;
 }
 
 .button {
@@ -90,9 +75,11 @@ body {
 }
 
 .mute-button {
-  float: right;
-  height: 44%;
-  margin: 6% 0 0;
+  bottom: 0;
+  height: 8%;
+  margin: 2%;
+  position: absolute;
+  right: 0;
   width: 8%;
 }
 
