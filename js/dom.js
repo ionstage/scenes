@@ -26,6 +26,12 @@
     parent.appendChild(child);
   };
 
+  dom.attr = function(el, props) {
+    Object.keys(props).forEach(function(key) {
+      el.setAttribute(key, props[key]);
+    });
+  };
+
   dom.css = function(el, props) {
     var style = el.style;
     Object.keys(props).forEach(function(key) {

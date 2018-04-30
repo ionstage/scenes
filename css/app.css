@@ -51,6 +51,19 @@ body {
   width: 10.8%;
 }
 
+.medal-item {
+  border-radius: 50%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: opacity 0.1s ease-out;
+  transition: opacity 0.1s ease-out;
+  width: 100%;
+}
+
+.medal-item:not([src]){
+  visibility: hidden;
+}
+
 .button {
   background-color: #fafafa;
   border: 1px solid #bdbdbd;
