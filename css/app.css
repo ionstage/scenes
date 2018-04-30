@@ -39,6 +39,7 @@ body {
 
 .medal {
   background-color: #fafafa;
+  background-size: 100%;
   border: 2px solid #fafafa;
   border-radius: 50%;
   bottom: 0;
