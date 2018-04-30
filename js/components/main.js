@@ -23,12 +23,12 @@
 
   Main.prototype.loadScene = function(callback) {
     var scene = callback();
-    if (scene.hasOwnProperty('background')) {
-      this.background.change(scene.background);
-    }
-    if (scene.hasOwnProperty('foreground')) {
-      this.foreground.change(scene.foreground[0], scene.foreground[1]);
-    }
+    var background = (scene.hasOwnProperty('background') ? scene.background : '#ffffff');
+    var foreground = (scene.hasOwnProperty('foreground') ? scene.foreground : ['#ffffff', 0]);
+    return Promise.all([
+      this.background.change(background),
+      this.foreground.change(foreground[0], foreground[1]),
+    ]);
   };
 
   if (typeof module !== 'undefined' && module.exports) {

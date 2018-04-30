@@ -4,9 +4,17 @@
   var jCore = require('jcore');
   var dom = app.dom || require('../dom.js');
 
-  var Foreground = jCore.Component.inherits();
+  var Foreground = jCore.Component.inherits(function() {
+    this.background = '';
+    this.opacity = 0;
+  });
 
   Foreground.prototype.change = function(background, opacity) {
+    if (this.background === background && this.opacity === opacity) {
+      return Promise.resolve();
+    }
+    this.background = background;
+    this.opacity = opacity;
     return new Promise(function(resolve) {
       var children = dom.children(this.element());
       dom.once(this.element(), 'transitionend', function() {
