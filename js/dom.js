@@ -111,6 +111,15 @@
     });
   };
 
+  dom.loadScript = function(url) {
+    return dom.ajax({ type: 'GET', url: url }).then(function(text) {
+      var el = document.createElement('script');
+      el.textContent = text;
+      document.body.appendChild(el);
+      document.body.removeChild(el);
+    });
+  };
+
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = dom;
   } else {
