@@ -3,6 +3,11 @@
 
   var dom = {};
 
+  dom.export = function(key, value) {
+    var g = (typeof global !== 'undefined' ? global : window);
+    Object.defineProperty(g, key, { value: value });
+  };
+
   dom.body = function() {
     return document.body;
   };
