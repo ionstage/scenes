@@ -5,4 +5,5 @@
   var Main = app.Main || require('./components/main.js');
 
   app.main = new Main({ element: dom.body() });
+  dom.export('scene', app.main.scene());
 })(this.app || (this.app = {}));
