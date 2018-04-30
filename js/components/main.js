@@ -26,6 +26,9 @@
     if (scene.hasOwnProperty('background')) {
       this.background.change(scene.background);
     }
+    if (scene.hasOwnProperty('foreground')) {
+      this.foreground.change(scene.foreground[0], scene.foreground[1]);
+    }
   };
 
   if (typeof module !== 'undefined' && module.exports) {
