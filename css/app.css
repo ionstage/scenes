@@ -37,6 +37,15 @@ body {
   width: 100%;
 }
 
+.content-item {
+  position: absolute;
+}
+
+.content-item > img {
+  height: 100%;
+  width: 100%;
+}
+
 .medal {
   background-color: #fafafa;
   background-size: 100%;
