@@ -25,13 +25,19 @@
     var scene = callback();
     var background = (scene.hasOwnProperty('background') ? scene.background : '#ffffff');
     var foreground = (scene.hasOwnProperty('foreground') ? scene.foreground : ['#ffffff', 0]);
-    return this.content.loadMaterials(scene.materials || []).then(function() {
+    return Promise.all([
+      this.content.loadMaterials(scene.materials || []),
+      this.content.loadCharacters(scene.characters || []),
+    ]).then(function() {
       return Promise.all([
         this.background.change(background),
         this.foreground.change(foreground[0], foreground[1]),
         this.content.hideMaterials(),
+        this.content.hideCharacters(),
         this.content.showMaterials(),
       ]);
+    }.bind(this)).then(function() {
+      return this.content.showCharacters();
     }.bind(this));
   };
 
