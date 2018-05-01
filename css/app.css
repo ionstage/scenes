@@ -32,8 +32,8 @@ body {
 .foreground-item {
   height: 100%;
   position: absolute;
-  -webkit-transition: opacity 0.5s ease-out;
-  transition: opacity 0.5s ease-out;
+  -webkit-transition: opacity .5s ease-out;
+  transition: opacity .5s ease-out;
   width: 100%;
 }
 
@@ -47,8 +47,8 @@ body {
 .content-item {
   opacity: 0;
   position: absolute;
-  -webkit-transition: opacity 0.3s ease-out;
-  transition: opacity 0.3s ease-out;
+  -webkit-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out;
 }
 
 .content-item > img {
@@ -75,8 +75,8 @@ body {
   border-radius: 50%;
   height: 100%;
   position: absolute;
-  -webkit-transition: opacity 0.1s ease-out;
-  transition: opacity 0.1s ease-out;
+  -webkit-transition: opacity .1s ease-out;
+  transition: opacity .1s ease-out;
   width: 100%;
 }
 
