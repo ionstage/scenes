@@ -21,11 +21,19 @@ body {
   width: 177.78vh;
 }
 
-.background {
-  background-color: #ffffff;
+.main-item {
   height: 100%;
   position: absolute;
   width: 100%;
+}
+
+.background {
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+.foreground {
+  z-index: 2;
 }
 
 .background-item,
@@ -38,10 +46,8 @@ body {
 }
 
 .content {
-  height: 100%;
   overflow: hidden;
-  position: absolute;
-  width: 100%;
+  z-index: 1;
 }
 
 .content-item {
@@ -54,6 +60,10 @@ body {
 .content-item > img {
   height: 100%;
   width: 100%;
+}
+
+.controls {
+  z-index: 3;
 }
 
 .medal {
