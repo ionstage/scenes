@@ -25,10 +25,13 @@
     var scene = callback();
     var background = (scene.hasOwnProperty('background') ? scene.background : '#ffffff');
     var foreground = (scene.hasOwnProperty('foreground') ? scene.foreground : ['#ffffff', 0]);
-    return Promise.all([
-      this.background.change(background),
-      this.foreground.change(foreground[0], foreground[1]),
-    ]);
+    return this.content.loadMaterials(scene.materials || []).then(function() {
+      return Promise.all([
+        this.background.change(background),
+        this.foreground.change(foreground[0], foreground[1]),
+        this.content.showMaterials(),
+      ]);
+    }.bind(this));
   };
 
   if (typeof module !== 'undefined' && module.exports) {

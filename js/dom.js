@@ -59,7 +59,7 @@
   };
 
   dom.translate = function(el, x, y) {
-    dom.transform(el, 'translate(' + x + 'px, ' + y + 'px)');
+    dom.transform(el, 'translate(' + x + '%, ' + y + '%)');
   };
 
   dom.on = function(el, type, listener, useCapture) {
