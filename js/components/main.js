@@ -23,15 +23,13 @@
 
   Main.prototype.loadScene = function(callback) {
     var scene = callback();
-    var background = (scene.hasOwnProperty('background') ? scene.background : '#ffffff');
-    var foreground = (scene.hasOwnProperty('foreground') ? scene.foreground : ['#ffffff', 0]);
     return Promise.all([
       this.content.loadMaterials(scene.materials || []),
       this.content.loadCharacters(scene.characters || []),
     ]).then(function() {
       return Promise.all([
-        this.background.change(background),
-        this.foreground.change(foreground[0], foreground[1]),
+        this.background.change(scene.background || '#ffffff'),
+        this.foreground.change.apply(this.foreground, scene.foreground || ['#ffffff', 0]),
         this.content.hideMaterials(),
         this.content.hideCharacters(),
         this.content.showMaterials(),
