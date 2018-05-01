@@ -20,28 +20,29 @@
   };
 
   Content.prototype.showMaterials = function() {
-    return Promise.all([
-      Promise.all(this.previousMaterials.map(function(item) {
-        return item.hide().then(function() {
-          item.parentElement(null);
-        });
-      })),
-      Promise.all(this.materials.map(function(item) {
-        item.parentElement(this.element());
-        item.redraw();
-        return item;
-      }.bind(this))).then(function(items) {
-        return new Promise(function(resolve) {
-          setTimeout(function() {
-            resolve();
-          }, 1000 / 15);
-        }).then(function() {
-          return Promise.all(items.map(function(item) {
-            return item.show();
-          }));
-        });
-      }),
-    ]);
+    return Promise.all(this.materials.map(function(item) {
+      item.parentElement(this.element());
+      item.redraw();
+      return item;
+    }.bind(this))).then(function(items) {
+      return new Promise(function(resolve) {
+        setTimeout(function() {
+          resolve();
+        }, 1000 / 15);
+      }).then(function() {
+        return Promise.all(items.map(function(item) {
+          return item.show();
+        }));
+      });
+    });
+  };
+
+  Content.prototype.hideMaterials = function() {
+    return Promise.all(this.previousMaterials.map(function(item) {
+      return item.hide().then(function() {
+        item.parentElement(null);
+      });
+    }));
   };
 
   if (typeof module !== 'undefined' && module.exports) {

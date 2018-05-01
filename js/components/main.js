@@ -29,6 +29,7 @@
       return Promise.all([
         this.background.change(background),
         this.foreground.change(foreground[0], foreground[1]),
+        this.content.hideMaterials(),
         this.content.showMaterials(),
       ]);
     }.bind(this));
