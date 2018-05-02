@@ -26,6 +26,7 @@
     return Promise.all([
       this.content.loadMaterials(scene.materials || []),
       this.content.loadCharacters(scene.characters || []),
+      this.controls.hideActions(),
     ]).then(function() {
       return Promise.all([
         this.background.change(scene.background || '#ffffff'),
@@ -36,6 +37,10 @@
       ]);
     }.bind(this)).then(function() {
       return this.content.showCharacters();
+    }.bind(this)).then(function() {
+      return this.controls.loadActions(scene.actions || []).then(function() {
+        return this.controls.showActions();
+      }.bind(this));
     }.bind(this));
   };
 

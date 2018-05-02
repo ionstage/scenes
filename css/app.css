@@ -68,7 +68,6 @@ body {
 
 .action-container {
   height: 100%;
-  opacity: 0;
   position: absolute;
   -webkit-transition: opacity .1s ease-out;
   transition: opacity .1s ease-out;
@@ -88,19 +87,19 @@ body {
   width: 4.5%;
 }
 
-.action.amber {
+.action[data-type='amber'] {
   background-color: #ffc107;
 }
 
-.action.amber.active {
+.action[data-type='amber'].active {
   background-color: #ffa000;
 }
 
-.action.pink {
+.action[data-type='pink'] {
   background-color: #f8bbd0;
 }
 
-.action.pink.active {
+.action[data-type='pink'].active {
   background-color: #f48fb1;
 }
 
