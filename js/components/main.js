@@ -44,6 +44,14 @@
     }.bind(this));
   };
 
+  Main.prototype.oninit = function() {
+    this.controls.on('action', this.onaction.bind(this));
+  };
+
+  Main.prototype.onaction = function(name, next) {
+    app.dom.loadScript('scenes/' + next.scene + '.js');
+  };
+
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Main;
   } else {

@@ -2,6 +2,7 @@
   'use strict';
 
   var jCore = require('jcore');
+  var helper = app.helper || require('../helper.js');
   var dom = app.dom || require('../dom.js');
   var Action = app.Action || require('./action.js');
   var Button = app.Button || require('./button.js');
@@ -16,8 +17,10 @@
 
   Controls.prototype.loadActions = function(actions) {
     return this.actionContainer.load(actions.map(function(action) {
-      return new Action(action);
-    }));
+      var item = new Action(action);
+      item.on('tap', this.emit.bind(this, 'action', action.name, helper.clone(action.next)));
+      return item;
+    }.bind(this)));
   };
 
   Controls.prototype.showActions = function() {
