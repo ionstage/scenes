@@ -16,9 +16,13 @@
     this.muteButton = new MuteButton({ element: this.findElement('.mute-button') });
   });
 
-  Controls.prototype.loadActions = function(actions) {
+  Controls.prototype.loadActions = function(actions, character) {
     return this.actionContainer.load(actions.map(function(action) {
-      var item = new Action(action);
+      var item = new Action({
+        type: (action.next.character === character ? 'amber' : 'pink'),
+        x: action.x,
+        y: action.y,
+      });
       item.on('tap', this.emit.bind(this, 'action', action.name, helper.clone(action.next)));
       return item;
     }.bind(this)));
@@ -34,6 +38,10 @@
 
   Controls.prototype.playAction = function(name) {
     return this.playerContainer.play(name);
+  };
+
+  Controls.prototype.loadMedal = function(name) {
+    return this.medal.change(name);
   };
 
   Controls.prototype.oninit = function() {

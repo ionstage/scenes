@@ -9,6 +9,7 @@
   var Foreground = app.Foreground || require('./foreground.js');
 
   var Main = jCore.Component.inherits(function() {
+    this.character = '';
     this.background = new Background({ element: this.findElement('.background') });
     this.content = new Content({ element: this.findElement('.content') });
     this.foreground = new Foreground({ element: this.findElement('.foreground') });
@@ -22,7 +23,7 @@
   };
 
   Main.prototype.loadScene = function(callback) {
-    var scene = callback();
+    var scene = callback(this.character);
     return Promise.all([
       this.content.loadMaterials(scene.materials || []),
       this.content.loadCharacters(scene.characters || []),
@@ -38,10 +39,15 @@
     }.bind(this)).then(function() {
       return this.content.showCharacters();
     }.bind(this)).then(function() {
-      return this.controls.loadActions(scene.actions || []).then(function() {
+      return this.controls.loadActions(scene.actions || [], this.character).then(function() {
         return this.controls.showActions();
       }.bind(this));
     }.bind(this));
+  };
+
+  Main.prototype.loadCharacter = function(name) {
+    this.character = name;
+    return this.controls.loadMedal(name);
   };
 
   Main.prototype.oninit = function() {
@@ -50,6 +56,8 @@
 
   Main.prototype.onaction = function(name, next) {
     this.controls.playAction(name).then(function() {
+      return this.loadCharacter(next.character);
+    }.bind(this)).then(function() {
       return app.dom.loadScript('scenes/' + next.scene + '.js');
     });
   };
