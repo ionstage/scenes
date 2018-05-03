@@ -27,7 +27,6 @@
     return Promise.all([
       this.content.loadMaterials(scene.materials || []),
       this.content.loadCharacters(scene.characters || []),
-      this.controls.hideActions(),
     ]).then(function() {
       return Promise.all([
         this.background.change(scene.background || '#ffffff'),
@@ -56,7 +55,11 @@
 
   Main.prototype.onaction = function(name, next) {
     this.controls.playAction(name).then(function() {
-      return this.loadCharacter(next.character);
+      return Promise.all([
+        this.controls.hidePlayer(),
+        this.controls.hideActions(),
+        this.loadCharacter(next.character),
+      ]);
     }.bind(this)).then(function() {
       return app.dom.loadScript('scenes/' + next.scene + '.js');
     });

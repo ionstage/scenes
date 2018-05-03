@@ -40,6 +40,10 @@
     return this.playerContainer.play(name);
   };
 
+  Controls.prototype.hidePlayer = function() {
+    return this.playerContainer.hide();
+  };
+
   Controls.prototype.loadMedal = function(name) {
     return this.medal.change(name);
   };
@@ -104,17 +108,13 @@
     PlayerContainer.prototype.play = function(name) {
       return this.show().then(function() {
         return new Promise(function(resolve) {
-          var src = 'actions/' + name + '/index.html';
+          var src = 'actions/' + name + '.html';
           dom.once(this.playerElement(), 'load', function() {
             dom.once(this.playerContentWindow(), 'message', function() {
               resolve();
             }.bind(this));
           }.bind(this));
           dom.attr(this.playerElement(), { src: src });
-        }.bind(this)).then(function() {
-          return this.hide();
-        }.bind(this)).then(function() {
-          dom.attr(this.playerElement(), { src: '' });
         }.bind(this));
       }.bind(this));
     };
@@ -138,6 +138,8 @@
           resolve();
         }.bind(this));
         dom.css(this.element(), { opacity: 0 });
+      }.bind(this)).then(function() {
+        dom.attr(this.playerElement(), { src: '' });
       }.bind(this));
     };
 
