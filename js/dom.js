@@ -51,6 +51,10 @@
     el.dataset[key] = value;
   };
 
+  dom.contentWindow = function(iframe) {
+    return iframe.contentWindow;
+  };
+
   dom.transform = function(el, value) {
     dom.css(el, {
       transform: value,

@@ -12,6 +12,7 @@
   var Controls = jCore.Component.inherits(function() {
     this.actionContainer = new Controls.ActionContainer({ element: this.findElement('.action-container') });
     this.medal = new Medal({ element: this.findElement('.medal') });
+    this.playerContainer = new Controls.PlayerContainer({ element: this.findElement('.player-container') });
     this.muteButton = new MuteButton({ element: this.findElement('.mute-button') });
   });
 
@@ -29,6 +30,10 @@
 
   Controls.prototype.hideActions = function() {
     return this.actionContainer.hide();
+  };
+
+  Controls.prototype.playAction = function(name) {
+    return this.playerContainer.play(name);
   };
 
   Controls.prototype.oninit = function() {
@@ -75,6 +80,60 @@
     };
 
     return ActionContainer;
+  })();
+
+  Controls.PlayerContainer = (function() {
+    var PlayerContainer = jCore.Component.inherits();
+
+    PlayerContainer.prototype.playerElement = function() {
+      return this.findElement('.player');
+    };
+
+    PlayerContainer.prototype.playerContentWindow = function() {
+      return dom.contentWindow(this.playerElement());
+    };
+
+    PlayerContainer.prototype.play = function(name) {
+      return this.show().then(function() {
+        return new Promise(function(resolve) {
+          var src = 'actions/' + name + '/index.html';
+          dom.once(this.playerElement(), 'load', function() {
+            dom.once(this.playerContentWindow(), 'message', function() {
+              resolve();
+            }.bind(this));
+          }.bind(this));
+          dom.attr(this.playerElement(), { src: src });
+        }.bind(this)).then(function() {
+          return this.hide();
+        }.bind(this)).then(function() {
+          dom.attr(this.playerElement(), { src: '' });
+        }.bind(this));
+      }.bind(this));
+    };
+
+    PlayerContainer.prototype.show = function() {
+      return new Promise(function(resolve) {
+        dom.once(this.element(), 'transitionend', function() {
+          resolve();
+        }.bind(this));
+        dom.css(this.element(), {
+          opacity: 1,
+          visibility: 'visible',
+        });
+      }.bind(this));
+    };
+
+    PlayerContainer.prototype.hide = function() {
+      return new Promise(function(resolve) {
+        dom.once(this.element(), 'transitionend', function() {
+          dom.css(this.element(), { visibility: 'hidden' });
+          resolve();
+        }.bind(this));
+        dom.css(this.element(), { opacity: 0 });
+      }.bind(this));
+    };
+
+    return PlayerContainer;
   })();
 
   if (typeof module !== 'undefined' && module.exports) {

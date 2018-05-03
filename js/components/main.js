@@ -49,7 +49,9 @@
   };
 
   Main.prototype.onaction = function(name, next) {
-    app.dom.loadScript('scenes/' + next.scene + '.js');
+    this.controls.playAction(name).then(function() {
+      return app.dom.loadScript('scenes/' + next.scene + '.js');
+    });
   };
 
   if (typeof module !== 'undefined' && module.exports) {
