@@ -45,6 +45,7 @@
       return new Promise(function(resolve) {
         this.actions.forEach(function(action) {
           action.parentElement(null);
+          action.redraw();
         });
         actions.forEach(function(action) {
           action.parentElement(this.element());

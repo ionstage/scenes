@@ -69,6 +69,7 @@
     return Promise.all(items.map(function(item) {
       return item.hide().then(function() {
         item.parentElement(null);
+        item.redraw();
       });
     }));
   };
