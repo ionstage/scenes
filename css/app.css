@@ -68,6 +68,7 @@ body {
 
 .action-container {
   height: 100%;
+  opacity: 0;
   position: absolute;
   -webkit-transition: opacity .1s ease-out;
   transition: opacity .1s ease-out;

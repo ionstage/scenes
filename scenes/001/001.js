@@ -15,6 +15,7 @@
         { name: '001/001', x: 0.1, y: 0.3, next: { scene: '001/001', character: '001' } },
         { name: '002/001', x: 0.7, y: 0.4, next: { scene: '002/001', character: '002' } },
       ],
+      sound: '001',
     };
   });
 })();

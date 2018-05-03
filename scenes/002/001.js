@@ -14,6 +14,7 @@
       actions: [
         { name: '001/001', x: 0.3, y: 0.3, next: { scene: '001/001', character: character } },
       ],
+      sound: '002',
     };
   });
 })();
