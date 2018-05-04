@@ -5,7 +5,6 @@
   var helper = app.helper || require('../helper.js');
   var dom = app.dom || require('../dom.js');
   var Action = app.Action || require('./action.js');
-  var Button = app.Button || require('./button.js');
   var Medal = app.Medal || require('./medal.js');
   var MuteButton = app.MuteButton || require('./mute-button.js');
 
