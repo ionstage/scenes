@@ -12,6 +12,7 @@
   var Main = jCore.Component.inherits(function() {
     this.character = '';
     this.sound = new Main.Sound();
+    this.history = [];
     this.background = new Background({ element: this.findElement('.background') });
     this.content = new Content({ element: this.findElement('.content') });
     this.foreground = new Foreground({ element: this.findElement('.foreground') });
@@ -66,7 +67,7 @@
   };
 
   Main.prototype.loadSceneWithCallback = function(callback) {
-    return this.loadScene(callback(this.character));
+    return this.loadScene(callback(this.history));
   };
 
   Main.prototype.loadCharacter = function(name) {
@@ -82,6 +83,11 @@
   };
 
   Main.prototype.onaction = function(name, next) {
+    this.history.push({
+      action: name,
+      character: next.character,
+      scene: next.scene,
+    });
     this.controls.playAction(name).then(function() {
       return Promise.all([
         this.controls.hidePlayer(),

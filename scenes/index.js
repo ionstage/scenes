@@ -1,5 +1,5 @@
 (function() {
-  scene.load(function(character) {
+  scene.load(function() {
     return {
       background: '#efebe9',
       materials: [

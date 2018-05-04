@@ -1,5 +1,5 @@
 (function() {
-  scene.load(function(character) {
+  scene.load(function(history) {
     return {
       background: '#3e2723',
       foreground: ['#efebe9', 0.6],
@@ -12,7 +12,7 @@
         { name: '002/001', x: 0.1, y: 0.4, z: 0, w: 0.1875, h: 0.333 },
       ],
       actions: [
-        { name: '001/001', x: 0.3, y: 0.3, next: { scene: '001/001', character: character } },
+        { name: '001/001', x: 0.3, y: 0.3, next: { scene: '001/001', character: history[history.length - 1].character } },
       ],
       sound: '002',
     };
