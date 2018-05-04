@@ -20,12 +20,23 @@
 
   Main.prototype.scene = function() {
     return Object.create(Object.prototype, {
-      load: { value: this.loadScene.bind(this) },
+      load: { value: this.loadSceneWithCallback.bind(this) },
     });
   };
 
-  Main.prototype.loadScene = function(callback) {
-    var scene = callback(this.character);
+  Main.prototype.load = function() {
+    var current = dom.load('current', null);
+    if (current) {
+      return Promise.all([
+        this.loadCharacter(current.character),
+        this.loadScene(current.scene),
+      ]);
+    } else {
+      return dom.loadScript('scenes/index.js');
+    }
+  };
+
+  Main.prototype.loadScene = function(scene) {
     return Promise.all([
       this.content.loadMaterials(scene.materials || []),
       this.content.loadCharacters(scene.characters || []),
@@ -46,7 +57,16 @@
       }.bind(this));
     }.bind(this)).then(function() {
       return this.sound.play();
+    }.bind(this)).then(function() {
+      dom.save('current', {
+        character: this.character,
+        scene: scene,
+      });
     }.bind(this));
+  };
+
+  Main.prototype.loadSceneWithCallback = function(callback) {
+    return this.loadScene(callback(this.character));
   };
 
   Main.prototype.loadCharacter = function(name) {
