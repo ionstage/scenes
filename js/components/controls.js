@@ -35,6 +35,14 @@
     return this.actionContainer.hide();
   };
 
+  Controls.prototype.enableActions = function() {
+    this.actionContainer.enable();
+  };
+
+  Controls.prototype.disableActions = function() {
+    this.actionContainer.disable();
+  };
+
   Controls.prototype.playAction = function(name) {
     return this.playerContainer.play(name);
   };
@@ -88,6 +96,14 @@
         }.bind(this));
         dom.css(this.element(), { opacity: 0 });
       }.bind(this));
+    };
+
+    ActionContainer.prototype.enable = function() {
+      dom.css(this.element(), { 'pointer-events': 'auto' });
+    };
+
+    ActionContainer.prototype.disable = function() {
+      dom.css(this.element(), { 'pointer-events': 'none' });
     };
 
     return ActionContainer;

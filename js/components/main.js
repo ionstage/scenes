@@ -55,6 +55,8 @@
     }.bind(this)).then(function() {
       return this.controls.loadActions(scene.actions || [], this.character).then(function() {
         return this.controls.showActions();
+      }.bind(this)).then(function() {
+        this.controls.enableActions();
       }.bind(this));
     }.bind(this)).then(function() {
       return this.sound.play();
@@ -88,6 +90,7 @@
       character: next.character,
       scene: next.scene,
     });
+    this.controls.disableActions();
     this.controls.playAction(name).then(function() {
       return Promise.all([
         this.controls.hidePlayer(),
