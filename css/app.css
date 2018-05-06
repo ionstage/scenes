@@ -29,10 +29,12 @@ body {
 
 .background {
   background-color: #ffffff;
+  pointer-events: none;
   z-index: 0;
 }
 
 .foreground {
+  pointer-events: none;
   z-index: 2;
 }
 
@@ -47,6 +49,7 @@ body {
 
 .content {
   overflow: hidden;
+  pointer-events: none;
   z-index: 1;
 }
 
@@ -122,6 +125,7 @@ body {
   height: 19.2%;
   left: 0;
   margin: 2%;
+  pointer-events: none;
   position: absolute;
   width: 10.8%;
 }
