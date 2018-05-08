@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+  <title></title>
+  <link rel="stylesheet" href="css/app.min.css">
+</head>
+<body class="main">
+  <div class="background main-item">
+    <div class="background-item"></div>
+    <div class="background-item"></div>
+  </div>
+  <div class="content main-item"></div>
+  <div class="foreground main-item">
+    <div class="foreground-item"></div>
+    <div class="foreground-item"></div>
+  </div>
+  <div class="controls main-item">
+    <div class="action-container"></div>
+    <div class="medal">
+      <img class="medal-item" alt="Medal">
+      <img class="medal-item" alt="Medal">
+    </div>
+    <div class="player-container">
+      <iframe class="player"></iframe>
+    </div>
+    <button class="mute-button button" data-state="mute">
+      <img class="button-icon-mute button-icon" src="images/volume-off.svg" alt="Mute">
+      <img class="button-icon-unmute button-icon" src="images/volume-up.svg" alt="Unmute">
+    </button>
+  </div>
+  <script src="js/bundle.min.js"></script>
+  <script>
+    if (typeof Promise === 'undefined') {
+      require('es6-promise').polyfill();
+    }
+  </script>
+  <script src="js/app.min.js"></script>
+</body>
+</html>
