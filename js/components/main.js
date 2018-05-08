@@ -98,7 +98,7 @@
         this.loadCharacter(next.character),
       ]);
     }.bind(this)).then(function() {
-      return app.dom.loadScript('scenes/' + next.scene + '.js');
+      return dom.loadScript('scenes/' + next.scene + '.js');
     });
   };
 
