@@ -55,6 +55,10 @@
     return iframe.contentWindow;
   };
 
+  dom.replace = function(iframe, url) {
+    iframe.contentWindow.location.replace(url);
+  };
+
   dom.transform = function(el, value) {
     dom.css(el, {
       transform: value,

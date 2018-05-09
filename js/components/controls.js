@@ -129,7 +129,7 @@
               resolve();
             }.bind(this));
           }.bind(this));
-          dom.attr(this.playerElement(), { src: src });
+          dom.replace(this.playerElement(), src);
         }.bind(this));
       }.bind(this));
     };
@@ -154,7 +154,7 @@
         }.bind(this));
         dom.css(this.element(), { opacity: 0 });
       }.bind(this)).then(function() {
-        dom.attr(this.playerElement(), { src: '' });
+        dom.replace(this.playerElement(), 'about:blank');
       }.bind(this));
     };
 
