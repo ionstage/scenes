@@ -30,6 +30,16 @@
       <img class="button-icon-unmute button-icon" src="images/volume-up.svg" alt="Unmute">
     </button>
   </div>
+  <script>
+    (function() {
+      var ua = window.navigator.userAgent;
+      if (ua.indexOf('Android') !== -1 && ua.indexOf('Mobile') !== -1) {
+        var translateY = 'translateY(10%)';
+        document.body.style.webkitTransform = translateY;
+        document.body.style.transform = translateY;
+      }
+    })();
+  </script>
   <script src="js/bundle.js"></script>
   <script>
     if (typeof Promise === 'undefined') {
