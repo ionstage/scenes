@@ -127,12 +127,12 @@
         }
         this.howl.once('fade', function(){
           this.howl.unload();
+          this.howl = null;
           resolve();
         }.bind(this));
         this.howl.fade(1, 0, 1000);
       }.bind(this)).then(function() {
         if (!name) {
-          this.howl = null;
           return Promise.resolve();
         }
         return new Promise(function(resolve) {
