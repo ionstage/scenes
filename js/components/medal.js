@@ -16,7 +16,15 @@
     return new Promise(function(resolve) {
       var children = dom.children(this.element());
       var src = 'images/medals/' + name + '.svg';
+      var onfailed = function() {
+        var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
+        dom.attr(children[0], { src: data });
+        dom.attr(children[1], { src: data });
+        resolve();
+      };
       dom.once(children[0], 'load', function() {
+        dom.off(children[0], 'error', onfailed);
+        dom.off(children[0], 'abort', onfailed);
         dom.once(this.element(), 'transitionend', function() {
           dom.append(this.element(), children[0]);
           dom.attr(children[1], { src: src });
@@ -26,6 +34,8 @@
         dom.css(children[0], { opacity: 1 });
         dom.css(children[1], { opacity: 0 });
       }.bind(this));
+      dom.on(children[0], 'error', onfailed);
+      dom.on(children[0], 'abort', onfailed);
       dom.attr(children[0], { src: src });
     }.bind(this));
   };

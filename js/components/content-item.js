@@ -15,9 +15,18 @@
   ContentItem.prototype.load = function(url) {
     return new Promise(function(resolve) {
       var img = this.findElement('.content-item-image');
+      var onfailed = function() {
+        var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
+        dom.attr(img, { src: data });
+        resolve(this);
+      }.bind(this);
       dom.once(img, 'load', function() {
+        dom.off(img, 'error', onfailed);
+        dom.off(img, 'abort', onfailed);
         resolve(this);
       }.bind(this));
+      dom.on(img, 'error', onfailed);
+      dom.on(img, 'abort', onfailed);
       dom.attr(img, { src: url });
     }.bind(this));
   };
