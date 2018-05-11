@@ -16,9 +16,8 @@
     return new Promise(function(resolve) {
       var img = this.findElement('.content-item-image');
       var onfailed = function() {
-        var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
-        dom.attr(img, { src: data });
-        resolve(this);
+        var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
+        dom.attr(img, { src: src });
       }.bind(this);
       dom.once(img, 'load', function() {
         dom.off(img, 'error', onfailed);

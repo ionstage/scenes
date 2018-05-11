@@ -17,10 +17,8 @@
       var children = dom.children(this.element());
       var src = 'images/medals/' + name + '.svg';
       var onfailed = function() {
-        var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
-        dom.attr(children[0], { src: data });
-        dom.attr(children[1], { src: data });
-        resolve();
+        src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYWH5DwABKAEMOPUkGQAAAABJRU5ErkJggg==';
+        dom.attr(children[0], { src: src });
       };
       dom.once(children[0], 'load', function() {
         dom.off(children[0], 'error', onfailed);
