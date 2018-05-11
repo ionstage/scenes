@@ -68,6 +68,7 @@
     ActionContainer.prototype.load = function(actions) {
       return new Promise(function(resolve) {
         this.actions.forEach(function(action) {
+          action.removeAllListeners();
           action.parentElement(null);
           action.redraw();
         });
