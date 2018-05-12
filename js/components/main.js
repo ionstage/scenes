@@ -10,7 +10,7 @@
   var Foreground = app.Foreground || require('./foreground.js');
 
   var Main = jCore.Component.inherits(function() {
-    this.character = '';
+    this.medal = '';
     this.sound = new Main.Sound();
     this.history = [];
     this.background = new Background({ element: this.findElement('.background') });
@@ -29,7 +29,7 @@
     var current = dom.load('current', null);
     if (current) {
       return Promise.all([
-        this.loadCharacter(current.character),
+        this.loadMedal(current.medal),
         this.loadScene(current.scene),
       ]);
     } else {
@@ -53,7 +53,7 @@
     }.bind(this)).then(function() {
       return this.content.showCharacters();
     }.bind(this)).then(function() {
-      return this.controls.loadActions(scene.actions || [], this.character).then(function() {
+      return this.controls.loadActions(scene.actions || [], this.medal).then(function() {
         return this.controls.showActions();
       }.bind(this)).then(function() {
         this.controls.enableActions();
@@ -62,7 +62,7 @@
       return this.sound.play();
     }.bind(this)).then(function() {
       dom.save('current', {
-        character: this.character,
+        medal: this.medal,
         scene: scene,
       });
     }.bind(this));
@@ -72,8 +72,8 @@
     return this.loadScene(callback(this.history));
   };
 
-  Main.prototype.loadCharacter = function(name) {
-    this.character = name;
+  Main.prototype.loadMedal = function(name) {
+    this.medal = name;
     return this.controls.loadMedal(name);
   };
 
@@ -87,7 +87,7 @@
   Main.prototype.onaction = function(name, next) {
     this.history.push({
       action: name,
-      character: next.character,
+      medal: next.medal,
       scene: next.scene,
     });
     this.controls.disableActions();
@@ -95,7 +95,7 @@
       return Promise.all([
         this.controls.hidePlayer(),
         this.controls.hideActions(),
-        this.loadCharacter(next.character),
+        this.loadMedal(next.medal),
       ]);
     }.bind(this)).then(function() {
       return dom.loadScript('scenes/' + next.scene + '.js');

@@ -15,10 +15,10 @@
     this.muteButton = new MuteButton({ element: this.findElement('.mute-button') });
   });
 
-  Controls.prototype.loadActions = function(actions, character) {
+  Controls.prototype.loadActions = function(actions, medal) {
     return this.actionContainer.load(actions.map(function(action) {
       var item = new Action({
-        type: (action.next.character === character ? 'amber' : 'pink'),
+        type: (action.next.medal === medal ? 'amber' : 'pink'),
         x: action.x,
         y: action.y,
       });
