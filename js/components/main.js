@@ -69,7 +69,7 @@
   };
 
   Main.prototype.loadSceneWithCallback = function(callback) {
-    return this.loadScene(callback(this.history));
+    return this.loadScene(callback(this.history.slice()));
   };
 
   Main.prototype.loadMedal = function(name) {
@@ -85,11 +85,11 @@
   };
 
   Main.prototype.onaction = function(name, next) {
-    this.history.push({
+    this.history.push(Object.freeze({
       action: name,
       medal: next.medal,
       scene: next.scene,
-    });
+    }));
     this.controls.disableActions();
     this.controls.playAction(name).then(function() {
       return Promise.all([
