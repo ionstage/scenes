@@ -77,11 +77,23 @@
     return this.controls.loadMedal(name);
   };
 
+  Main.prototype.unlockSound = function() {
+    var callback = function() {
+      this.sound.unlock(function() {
+        dom.off(dom.body(), 'mousedown', callback, true);
+      });
+    }.bind(this);
+    dom.on(dom.body(), 'mousedown', callback, true);
+  };
+
   Main.prototype.oninit = function() {
     this.controls.on('action', this.onaction.bind(this));
     this.controls.on('mute', this.onmute.bind(this));
     this.controls.on('unmute', this.onunmute.bind(this));
     this.sound.mute();
+    if (!dom.supportsTouch()) {
+      this.unlockSound();
+    }
   };
 
   Main.prototype.onaction = function(name, next) {
@@ -161,6 +173,32 @@
 
     Sound.prototype.unmute = function() {
       howler.Howler.mute(false);
+    };
+
+    Sound.prototype.unlock = function(done) {
+      var self = howler.Howler;
+      if (!self.ctx) {
+        return;
+      }
+      if (!self._scratchBuffer) {
+        self._scratchBuffer = self.ctx.createBuffer(1, 1, 22050);
+      }
+      self._autoResume();
+      var source = self.ctx.createBufferSource();
+      source.buffer = self._scratchBuffer;
+      source.connect(self.ctx.destination);
+      if (typeof source.start === 'undefined') {
+        source.noteOn(0);
+      } else {
+        source.start(0);
+      }
+      if (typeof self.ctx.resume === 'function') {
+        self.ctx.resume();
+      }
+      source.onended = function() {
+        source.disconnect(0);
+        done();
+      };
     };
 
     return Sound;
